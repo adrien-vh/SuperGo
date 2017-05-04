@@ -2,7 +2,7 @@
 /*global $, WGo */
 
 $(function () {
-    var board = new WGo.Board(document.getElementById("board"), { width: 600, section: {
+    var board = new WGo.Board(document.getElementById("board"), { width: 600, stoneHandler : WGo.Board.drawHandlers.PAINTED, section: {
             top: -0.5,
             left: -0.5,
             right: -0.5,
@@ -45,7 +45,14 @@ $(function () {
                 }
             }
         };
+    
+    console.log(board);
+    
     board.addCustomObject(coordinates);
+    
+    board.addEventListener("mousemove", function (x, y) {
+        console.log(x, y);
+    });
     
     board.addEventListener("click", function (x, y) {
         var i, j, position, stone;

@@ -1,4 +1,4 @@
-﻿/*!
+/*!
  * Copyright (c) 2013 Jan Prokop
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this
@@ -1611,8 +1611,8 @@ Board.default = {
     21:[{x: 3, y: 3}, {x:10, y: 3}, {x:17, y: 3}, {x: 3, y:10}, {x:10, y:10},
         {x:17, y:10}, {x: 3, y:17}, {x:10, y:17}, {x:17, y:17}],
   },
-	//stoneHandler: Board.drawHandlers.SHELL,
-	stoneHandler: Board.drawHandlers.REALISTIC, // New photograph based stones
+	stoneHandler: Board.drawHandlers.SHELL,
+	//stoneHandler: Board.drawHandlers.REALISTIC, // New photograph based stones
 	starSize: 1, // deprecated
 	shadowSize: 1, // deprecated
 	stoneSize: 1, // deprecated
@@ -1627,13 +1627,13 @@ Board.default = {
 	//background: WGo.DIR+"wood_512.jpg", // Mobile friendly, low resolution
 	background: WGo.DIR+"wood_1024.jpg",  // High resolution version, use with REALISTIC handler
 
-	//whiteStoneGraphic: [ WGo.DIR+"white_128.png" ], // Single image only, hires
-	//blackStoneGraphic: [ WGo.DIR+"black_128.png" ], // Single image only, hires
+	whiteStoneGraphic: [ WGo.DIR+"white_128.png" ], // Single image only, hires
+	blackStoneGraphic: [ WGo.DIR+"black_128.png" ], // Single image only, hires
 
 	//whiteStoneGraphic: [ WGo.DIR+"white_64.png" ], // Single image only, lowres
 	//blackStoneGraphic: [ WGo.DIR+"black_64.png" ], // Single image only, lowres
 
-	whiteStoneGraphic: [  WGo.DIR + "stones/white00_128.png",
+	/*whiteStoneGraphic: [  WGo.DIR + "stones/white00_128.png",
 												WGo.DIR + "stones/white01_128.png",
 												WGo.DIR + "stones/white02_128.png",
 												WGo.DIR + "stones/white03_128.png",
@@ -1649,7 +1649,7 @@ Board.default = {
 												WGo.DIR + "stones/black01_128.png",
 												WGo.DIR + "stones/black02_128.png",
 												WGo.DIR + "stones/black03_128.png"
-										 ],
+										 ],*/
 
 	theme: {}
 }
