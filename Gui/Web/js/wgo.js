@@ -1005,6 +1005,15 @@ Board.GridLayer.prototype.draw = function(board) {
 	}
 }
 
+Board.OverLayer = WGo.extendClass(Board.CanvasLayer, function(alpha) {
+	this.super.call(this);
+    $(this.context.canvas).css("opacity", alpha);
+});
+    
+Board.OverLayer.prototype.draw = function(board) {
+   
+};
+
 /**
  * Layer that is composed from more canvases. The proper canvas is selected according to drawn object.
  * In default there are 4 canvases and they are used for board objects like stones. This allows overlapping of objects.
@@ -1229,10 +1238,12 @@ Board.prototype = {
 		this.grid = new Board.GridLayer();
 		this.shadow = new Board.ShadowLayer(this, theme_variable("shadowSize", this));
 		this.stone = new Board.MultipleCanvasLayer();
+        this.over = new Board.OverLayer(this.overAlpha);
 
 		this.addLayer(this.grid, 100);
 		this.addLayer(this.shadow, 200);
 		this.addLayer(this.stone, 300);
+		this.addLayer(this.over, 400);
 	},
 
 	/**
@@ -1612,6 +1623,7 @@ Board.default = {
         {x:17, y:10}, {x: 3, y:17}, {x:10, y:17}, {x:17, y:17}],
   },
 	stoneHandler: Board.drawHandlers.SHELL,
+    overAlpha: 0.5,
 	//stoneHandler: Board.drawHandlers.REALISTIC, // New photograph based stones
 	starSize: 1, // deprecated
 	shadowSize: 1, // deprecated

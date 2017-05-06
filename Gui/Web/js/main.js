@@ -2,7 +2,7 @@
 /*global $, WGo */
 
 $(function () {
-    var board = new WGo.Board(document.getElementById("board"), { width: 600, stoneHandler : WGo.Board.drawHandlers.PAINTED, section: {
+    var board = new WGo.Board(document.getElementById("board"), { width: 600, stoneHandler : WGo.Board.drawHandlers.SHELL, overAlpha : 0.7, section: {
             top: -0.5,
             left: -0.5,
             right: -0.5,
@@ -44,14 +44,63 @@ $(function () {
                     this.fillStyle = "black";
                 }
             }
+        },
+        plane = {
+        // draw on stone layer
+            over: {
+                // draw function is called in context of CanvasRenderingContext2D, so we can paint immediately using this
+                draw: function (args, board) {
+                    
+                   /* var xr = board.getX(args.x), // get absolute x coordinate of intersection
+                        yr = board.getY(args.y), // get absolute y coordinate of intersection
+                        sr = board.stoneRadius; // get field radius in px*/
+                    
+                    args.c = game.turn;
+                    
+                    this.clearRect(0, 0, board.width, board.height);
+                    
+                    if (game.getStone(args.x, args.y) === 0) {
+                        board.stoneHandler.stone.draw.call(this, args, board);
+                    }
+                    
+                    /*// if there is a black stone, draw white plane
+                    if (board.obj_arr[args.x][args.y][0].c === WGo.B) {
+                        this.strokeStyle = "white";
+                    } else {
+                        this.strokeStyle = "black";
+                    }
+
+                    this.lineWidth = 3;
+
+                    this.beginPath();
+
+                    this.moveTo(xr - sr * 0.8, yr);
+                    this.lineTo(xr + sr * 0.5, yr);
+                    this.lineTo(xr + sr * 0.8, yr - sr * 0.25);
+                    this.moveTo(xr - sr * 0.4, yr);
+                    this.lineTo(xr + sr * 0.3, yr - sr * 0.6);
+                    this.moveTo(xr - sr * 0.4, yr);
+                    this.lineTo(xr + sr * 0.3, yr + sr * 0.6);
+
+                    this.stroke();*/
+                }
+            }
         };
-    
+        
+
     console.log(board);
+    
     
     board.addCustomObject(coordinates);
     
+    
     board.addEventListener("mousemove", function (x, y) {
-        console.log(x, y);
+        board.addObject({
+            x: x,
+            y: y,
+            type: plane
+        });
+        
     });
     
     board.addEventListener("click", function (x, y) {
